@@ -1,0 +1,16 @@
+{
+	"tasks": {
+		"cm:fetch": "deno run -A scripts/classmap-fetch.ts",
+		"pw:build": "./scripts/build.ps1",
+		"pw:watch": "./scripts/watch.ps1",
+		"pw:enable": "./scripts/enable.ps1",
+		"pw:disable": "./scripts/disable.ps1",
+		"sh:build": "./scripts/build.sh",
+		"sh:watch": "./scripts/watch.sh",
+		"sh:enable": "./scripts/enable.sh",
+		"sh:disable": "./scripts/disable.sh",
+		"build:release": "deno run -A scripts/build-release.ts",
+		"ci:build:release": "deno task build:release modules/*",
+		"ci:cron": "deno run -A scripts/cron.ts"
+	}
+}

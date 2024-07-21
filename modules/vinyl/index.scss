@@ -1,0 +1,65 @@
+.FqmFsMhuF4D0s35Z62Js {
+    box-shadow: 5px 0 20px 0 rgba(0,0,0,0.8);
+	border-radius: 4px;
+}
+
+.IcyWfMS5VkeOhaI7OWIx{
+	overflow: visible;
+}
+.HD9s7U5E1RLSWKpXmrqx{
+	overflow: visible;
+}
+.H0HbpIM3UrcupWIAjLWu{
+	z-index: 1;
+}
+.j96cpCtZAIdqxcDrYHPI {
+    margin: 0 36px;
+}
+
+.vinyl-out {
+    animation: vinylOut 2s ease-out forwards, vinylSpin 3s linear 0s infinite var(--isPlaying);
+}
+
+.vinyl {
+    position: absolute;
+	top: 5%;
+    bottom: 5%;
+	left: 0%;
+	width: 90%;
+	height: 90%;
+	background-image: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Gramophone_Vinyl_LP_Record_PNG_Transparent_Clip_Art_Image.png?m=1462983196');
+	background-size: 110% 110%;
+	background-position: center;
+	box-shadow: 0 0 20px 4px rgba(0,0,0,0.6);
+	border-radius: 50%;
+	will-change: transform;
+
+}
+
+.print {
+	position: relative;
+	top: 32%;
+	left: 32%;
+	height: 36%;
+	width: 36%;
+	background-image: var(--current-song-cover);
+	background-size: cover;
+	border-radius: 50%;
+	will-change: transform;
+}
+
+@keyframes vinylSpin{
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+
+@keyframes vinylOut {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 70%;
+    }
+}

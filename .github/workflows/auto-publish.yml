@@ -1,0 +1,33 @@
+name: Build module with the latest classmaps from github.com/spicetify/classmaps
+
+on:
+   schedule:
+      - cron: "11 9 * * *"
+
+jobs:
+   auto-build:
+      runs-on: ubuntu-latest
+
+      permissions:
+         contents: write
+
+      steps:
+         -  name: Clone repository
+            uses: actions/checkout@v4
+
+         -  name: Install Deno
+            uses: denoland/setup-deno@v1
+            with:
+               deno-version: v1.x
+
+         -  name: Cache Deno dependencies
+            uses: ./.github/actions/deno-cache
+
+         -  name: Build
+            run: deno task ci:cron
+            env:
+               GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+         -  name: Release
+            if: ${{ hashFiles('dist/') != '' }}
+            uses: ./.github/actions/release

@@ -1,0 +1,9 @@
+.swc/
+
+/dist/
+/classmap.json
+
+/modules/*/**/*.js
+/modules/*/**/*.css
+/modules/*/timestamp
+/modules/*/classmap.d.ts

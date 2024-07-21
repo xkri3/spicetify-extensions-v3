@@ -1,0 +1,62 @@
+name: Publish
+runs:
+   using: 'composite'
+   steps:
+      -  name: Build
+         shell: bash
+         run: |
+            set -e
+            pushd dist
+            for DIR in *; do
+               pushd "${DIR}"
+               cp metadata.json "../${DIR}.metadata.json"
+               7z a -bb0 "../${DIR}.zip" *
+               popd
+               rm -rf "${DIR}"
+            done
+            popd
+
+      -  name: Update vault.json
+         shell: bash
+         run: |
+            set -e
+            pushd dist
+            for ARCHIVE in *.zip; do
+               IFS="@" read -r ID VERSION <<< "$ARCHIVE"
+               VERSION="${VERSION%.zip}"
+               URL="https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/${ARCHIVE}"
+               S='.modules["'"${ID}"'"].v["'"${VERSION}"'"]'
+               yq -i '
+                  '"${S}"'.artifacts = ["'"${URL}"'"] |
+                  '"${S}"'.providers = []
+               ' ../vault.json
+            done
+            popd
+
+      -  name: Package provider
+         shell: bash
+         run: |
+            set -e
+            cp metadata.json "dist/${{ github.repository_owner }}.metadata.json"
+            7z a -bb0 "dist/${{ github.repository_owner }}.zip" README.md metadata.json vault.json
+
+      -  name: Release
+         uses: softprops/action-gh-release@v2
+         with:
+            files: dist/*
+
+      -  name: Git commit, rebase onto master
+         shell: bash
+         env:
+            PUSH_BRANCH: main
+            TMP_BRANCH: ${{ github.repository }}${{ github.run_id}}
+         run: |
+            git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+            git config --local user.name "$GITHUB_ACTOR"
+            git checkout -b $TMP_BRANCH
+            git add vault.json
+            git commit -m 'Updated vault.json'
+            git fetch
+            git checkout -b $PUSH_BRANCH --track origin/${PUSH_BRANCH}
+            git rebase $TMP_BRANCH $PUSH_BRANCH
+            git push

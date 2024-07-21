@@ -1,0 +1,16 @@
+{
+	"name": "xkri3's modules",
+	"tags": [
+		"provider", "xkri3"
+	],
+	"preview": "./PREVIEW.png",
+	"version": "0.0.0",
+	"authors": [
+		"xkri3"
+	],
+	"description": "Modules by xkri3",
+	"readme": "./README.md",
+	"entries": {},
+	"hasMixins": false,
+	"dependencies": []
+}

@@ -1,0 +1,20 @@
+{
+	"name": "vinyl",
+	"tags": [
+		"cover", "art", "theme"
+	],
+	"preview": "./assets/PREVIEW.png",
+	"version": "0.1.1",
+	"authors": [
+		"xkri3"
+	],
+	"description": "Turns your cover to vinyl",
+	"readme": "./assets/README.md",
+	"entries": {
+		"js": "index.js",
+		"css": "index.css"
+	},
+	"dependencies": {
+		"stdlib": "0.2.2"
+	}
+}

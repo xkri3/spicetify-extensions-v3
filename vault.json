@@ -1,0 +1,14 @@
+{
+  "modules": {
+    "xkri3.vinyl": {
+      "v": {
+        "0.1.1": {
+          "artifacts": [
+            ""
+          ],
+          "providers": []
+        }
+      }
+    }
+  }
+}
