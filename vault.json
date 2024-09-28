@@ -9,6 +9,16 @@
           "providers": []
         }
       }
+    },
+    "xkri3.iSpotify": {
+      "v": {
+        "0.1.0": {
+          "artifacts": [
+            ""
+          ],
+          "providers": []
+        }
+      }
     }
   }
 }

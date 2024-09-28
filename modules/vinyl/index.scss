@@ -49,15 +49,18 @@
 }
 
 @keyframes vinylSpin{
+	0%{
+		transform: rotate(0deg);
+	}
 	100% {
-		transform: rotate(1turn);
+		transform: rotate(360deg);
 	}
 }
 
 
 @keyframes vinylOut {
     0% {
-        left: 0;
+        left: 0%;
     }
     100% {
         left: 70%;
